@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld v-bind:title="message" v-on:result-event="appAction" />
+    <hr>
+    <p>{{ result }}</p>
   </div>
 </template>
 
@@ -9,9 +10,24 @@
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
+
   name: 'App',
+
   components: {
     HelloWorld
+  },
+
+  data: function() {
+    return {
+       message: 'Hello！！！',
+       result: 'no event...'
+    };
+  },
+
+  methods: {
+    appAction: function(message) {
+      this.result = 'PARENT_COMPONENT (*** you send :' + message + '. ***)';
+    }
   }
 }
 </script>
